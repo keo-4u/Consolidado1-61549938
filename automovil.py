@@ -35,3 +35,25 @@ class Automovil:
         if valor <= 0:
             raise ValueError("La velocidad maxima debe ser mayor a 0.")
         self._velocidad_max = valor
+    def tiempo_llegada(self, distancia_km):
+        return distancia_km / self.velocidad_max
+
+    def __str__(self):
+        return (
+            "Auto: " + str(self.marca) + " " + str(self.modelo) +
+            " (" + str(self.año_fabricacion) + ") | Vel: " +
+            str(self.velocidad_max) + " km/h | Combustible: " +
+            str(self.nivel_combustible) + "%"
+        )
+
+
+if __name__ == "__main__":
+    auto1 = Automovil("Toyota", "Corolla", 180.0, 75.0, 2020)
+    print(auto1)
+    print("Tiempo para 360 km:", auto1.tiempo_llegada(360.0), "horas")
+
+    # Prueba de validacion con error
+    try:
+        auto1.año_fabricacion = 1800
+    except ValueError as error:
+        print("Error capturado correctamente:", error)
